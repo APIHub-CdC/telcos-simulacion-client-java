@@ -64,50 +64,51 @@ En el archivo **TelecosSimulacionApiTest**, que se encuentra en ***src/test/java
 ```java
 @Test
 public void getReporteTest() throws ApiException {
-	
-	String xApiKey = "your_api_key";
 
-    DomicilioPeticion domicilio = new DomicilioPeticion();
-    domicilio.setDireccion(null);
-    domicilio.setColonia(null);
-    domicilio.setMunicipio(null);
-    domicilio.setCiudad(null);
-    domicilio.setEstado(CatalogoEstados.CDMX);
-    domicilio.setCodigoPostal(null);
-    domicilio.setFechaResidencia(null);
-    domicilio.setNumeroTelefono(null);
-    domicilio.setTipoDomicilio(CatalogoTipoDomicilio.C);
-    domicilio.setTipoAsentamiento(CatalogoTipoAsentamiento._1);
-    
-    PersonaPeticion persona = new PersonaPeticion();
-    persona.setPrimerNombre("NOMBRE");
-    persona.setSegundoNombre(null);
-    persona.setApellidoPaterno("PATERNO");
-    persona.setApellidoMaterno("MATERNO");
-    persona.setApellidoAdicional(null);
-    persona.setFechaNacimiento("27-06-1986");
-    persona.setRfc(null);
-    persona.setCurp(null);
-    persona.setNumeroSeguridadSocial(null);
-    persona.setNacionalidad("");
-    persona.setResidencia(CatalogoResidencia._1);
-    persona.setEstadoCivil(CatalogoEstadoCivil.S);
-    persona.setSexo(CatalogoSexo.M);
-    persona.setClaveElector("");
-    persona.setNumeroDependientes("");
-    persona.setFechaDefuncion("");
-    persona.setDomicilio(domicilio);
-    
+	String xApiKey = "your_api_key";
+	Peticion peticion = new Peticion();
+
+	DomicilioPeticion domicilio = new DomicilioPeticion();
+	domicilio.setDireccion(null);
+	domicilio.setColoniaPoblacion(null);
+	domicilio.setDelegacionMunicipio(null);
+	domicilio.setCiudad(null);
+	domicilio.setEstado(CatalogoEstados.CDMX);
+	domicilio.setCP(null);
+	domicilio.setFechaResidencia(null);
+	domicilio.setNumeroTelefono(null);
+	domicilio.setTipoDomicilio(CatalogoTipoDomicilio.C);
+	domicilio.setTipoAsentamiento(CatalogoTipoAsentamiento._1);
+
+	PersonaPeticion persona = new PersonaPeticion();
+	persona.setPrimerNombre("NOMBRE");
+	persona.setSegundoNombre(null);
+	persona.setApellidoPaterno("PATERNO");
+	persona.setApellidoMaterno("MATERNO");
+	persona.setApellidoAdicional(null);
+	persona.setFechaNacimiento("1986-06-27");
+	persona.setRFC(null);
+	persona.setCURP(null);
+	persona.setNacionalidad("");
+	persona.setResidencia(CatalogoResidencia._1);
+	persona.setEstadoCivil(CatalogoEstadoCivil.S);
+	persona.setSexo(CatalogoSexo.M);
+	persona.setClaveElectorIFE("");
+	persona.setNumeroDependientes(0);
+	persona.setFechaDefuncion("");
+	persona.setDomicilio(domicilio);
+	peticion.setFolioOtorgante("12421142");
+	peticion.setPersona(persona);
+
 	try {
-        Respuesta response = api.getReporte(xApiKey, persona);
-        Assert.assertTrue(response != null);
-        if(response != null) {
-        	logger.info(response.toString());
-        }
+		Respuesta response = api.getReporte(xApiKey, peticion);
+		Assert.assertTrue(response != null);
+		if (response != null) {
+			logger.info(response.toString());
+		}
 	} catch (ApiException e) {
 		logger.info(e.getResponseBody());
 	}
-
 }
 ```
 

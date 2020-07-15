@@ -177,7 +177,7 @@ public class ApiClient {
 
 	public String selectHeaderContentType(String[] contentTypes) {
 		if (contentTypes.length == 0 || contentTypes[0].equals("*/*")) {
-			return "application/text";
+			return "application/json";
 		}
 		for (String contentType : contentTypes) {
 			if (isJsonMime(contentType)) {
