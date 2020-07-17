@@ -8,8 +8,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Errores {
+	@SerializedName("folioConsulta")
+	private String folioConsulta = null;
 	@SerializedName("errores")
 	private List<Error> errores = null;
+
+	public Errores folioConsulta(String folioConsulta) {
+		this.folioConsulta = folioConsulta;
+		return this;
+	}
+
+	@ApiModelProperty(example = "12989", value = "Folio de la consulta")
+	public String getFolioConsulta() {
+		return folioConsulta;
+	}
+
+	public void setFolioConsulta(String folioConsulta) {
+		this.folioConsulta = folioConsulta;
+	}
 
 	public Errores errores(List<Error> errores) {
 		this.errores = errores;
@@ -42,12 +58,13 @@ public class Errores {
 			return false;
 		}
 		Errores errores = (Errores) o;
-		return Objects.equals(this.errores, errores.errores);
+		return Objects.equals(this.folioConsulta, errores.folioConsulta)
+				&& Objects.equals(this.errores, errores.errores);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(errores);
+		return Objects.hash(folioConsulta, errores);
 	}
 
 	@Override
@@ -55,6 +72,7 @@ public class Errores {
 		StringBuilder sb = new StringBuilder();
 		sb.append("class Errores {\n");
 
+		sb.append("    folioConsulta: ").append(toIndentedString(folioConsulta)).append("\n");
 		sb.append("    errores: ").append(toIndentedString(errores)).append("\n");
 		sb.append("}");
 		return sb.toString();
